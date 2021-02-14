@@ -31,8 +31,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyUp(KeyCode.Space))
         {
             jump = true;
@@ -42,8 +42,7 @@ public class Movement : MonoBehaviour
             jump = false;
         }
 
-        moveInput = new Vector3(input.x, 0, input.y);
-        //_moveInput.Normalize();
+        moveInput = new Vector3(input.x, 0, input.y).normalized;
         moveVelocity = transform.forward * moveSpeed * moveInput.sqrMagnitude;
 
         Vector3 CameraForward = mainCamera.transform.forward;
