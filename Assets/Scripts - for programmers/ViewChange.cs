@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class ViewChange : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject char1, char2;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SwitchChar();
+        }
+    }
+
+    void SwitchChar()
+    {
+        if (char1.activeInHierarchy == true)
+        {
+            char1.SetActive(false);
+            char2.SetActive(true);
+        }
+        else if (char2.activeInHierarchy == true)
+        {
+            char2.SetActive(false);
+            char1.SetActive(true);
+        }
     }
 }
