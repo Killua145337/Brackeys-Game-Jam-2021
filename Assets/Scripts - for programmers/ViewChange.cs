@@ -13,7 +13,7 @@ public class ViewChange : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SwitchChar();
         }
