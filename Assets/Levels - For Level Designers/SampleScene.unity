@@ -183,10 +183,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5102172851740385080, guid: 5120e31a136d53743842aeee06b09f76,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 5102172851740385082, guid: 5120e31a136d53743842aeee06b09f76,
         type: 3}
       propertyPath: m_Name
       value: Wolf_character
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102172851740385083, guid: 5120e31a136d53743842aeee06b09f76,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5120e31a136d53743842aeee06b09f76, type: 3}
