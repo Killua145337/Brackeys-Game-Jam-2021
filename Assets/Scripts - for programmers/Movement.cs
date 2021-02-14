@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
+    //Serialized Variables
     [SerializeField]  float moveSpeed;
-    [SerializeField]  float jumpForce;
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpWaitTime;
 
+    //Vector3 Variables
     Vector2 input;
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    bool jump;
-    bool canJump;
+    bool isJumping = false;
 
+    //Cached References
     Rigidbody rigidBody;
+    Animator animater;
     Camera mainCamera;
     Ray lookRay;
-    Animator animater;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +36,6 @@ public class Movement : MonoBehaviour
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            jump = true;
-        }
-        else
-        {
-            jump = false;
-        }
-
         moveInput = new Vector3(input.x, 0, input.y).normalized;
         moveVelocity = transform.forward * moveSpeed * moveInput.sqrMagnitude;
 
@@ -62,19 +56,37 @@ public class Movement : MonoBehaviour
 
         animater.SetFloat("Speed", rigidBody.velocity.magnitude);
 
-    }
+        Jump();
 
+    }
 
     private void FixedUpdate()
     {
-        if (jump)
-        {
-            rigidBody.AddForce(Vector3.up * jumpForce);
-            jump = false;
-        }
-
         moveVelocity.y = rigidBody.velocity.y;
         rigidBody.velocity = moveVelocity;
 
     }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+            isJumping = true;
+            StartCoroutine(JumpWait());
+        }
+
+        if (isJumping)
+        {
+            animater.SetFloat("Speed", 0f);
+        }
+    }
+
+    private IEnumerator JumpWait()
+    {
+        yield return new WaitForSeconds(jumpWaitTime);
+        isJumping = false;
+    }
+
+   
 }
