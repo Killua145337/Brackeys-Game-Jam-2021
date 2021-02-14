@@ -18,12 +18,14 @@ public class Movement : MonoBehaviour
     Rigidbody rigidBody;
     Camera mainCamera;
     Ray lookRay;
-
+    Animator animater;
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
+        animater = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -58,6 +60,9 @@ public class Movement : MonoBehaviour
             dir.y = transform.position.y;
             transform.LookAt(dir);
         }
+
+        animater.SetFloat("Speed", rigidBody.velocity.magnitude);
+
     }
 
 
@@ -71,5 +76,6 @@ public class Movement : MonoBehaviour
 
         moveVelocity.y = rigidBody.velocity.y;
         rigidBody.velocity = moveVelocity;
+
     }
 }
