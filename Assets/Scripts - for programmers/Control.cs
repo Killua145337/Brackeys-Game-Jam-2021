@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Control : MonoBehaviour
 {
+    //Serialized Variables
     [SerializeField] AudioClip howlSound;
     [SerializeField] float howlTime;
 
-
+    //Cached References
     Animator animator;
 
     private void Start() {
@@ -16,14 +17,18 @@ public class Control : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H))
+        Howl();
+
+    }
+
+    private void Howl()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
         {
             animator.SetBool("howl", true);
             AudioSource.PlayClipAtPoint(howlSound, transform.position);
             StartCoroutine(StopHowlAnimation());
         }
-
-        
     }
 
     IEnumerator StopHowlAnimation()
