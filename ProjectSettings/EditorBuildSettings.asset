@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Levels - For Level Designers/Boot.unity
+    path: Assets/Scenes/Boot.unity
     guid: 0c8f16dcaaf2bf8438ed6e8b6ec345c1
   - enabled: 1
-    path: Assets/Levels - For Level Designers/Woulf Controller.unity
+    path: Assets/Scenes/Wolf Controller.unity
     guid: 188b8c239d57d824dac89b8269151c42
   - enabled: 1
-    path: Assets/Levels - For Level Designers/SampleScene.unity
+    path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
 
+    [SerializeField] bool dashAbility;
+
     //Sounds
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] AudioClip landSFX;
@@ -19,6 +21,7 @@ public class Movement : MonoBehaviour
     Vector3 moveInput;
 
     public bool isGrounded = true;
+    private bool dashOnCooldown;
 
     //Cached References
     Rigidbody rigidBody;
@@ -32,7 +35,6 @@ public class Movement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -62,6 +64,11 @@ public class Movement : MonoBehaviour
 
         Jump();
 
+        //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
+        if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()
@@ -88,5 +95,26 @@ public class Movement : MonoBehaviour
         animator.SetBool("jump", false);
     }
 
-   
+   IEnumerator Dash()
+    {
+        dashOnCooldown = true;
+
+        float cameraTurnSpeedTemp = transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed;
+
+        //Start dash
+        moveSpeed *= 3;
+        transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = 0.5f;
+
+        //Continue after 1 second
+        yield return new WaitForSeconds(1);
+
+        //Stop dash
+        moveSpeed /= 3;
+        transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = cameraTurnSpeedTemp;
+
+        //Continue after a further 3 seconds
+        yield return new WaitForSeconds(3);
+
+        dashOnCooldown = false;
+    }
 }
