@@ -9,6 +9,10 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
 
+    //Sounds
+    [SerializeField] AudioClip jumpSFX;
+    [SerializeField] AudioClip landSFX;
+
     //Vector3 Variables
     Vector2 input;
     Vector3 moveVelocity;
@@ -71,6 +75,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            AudioSource.PlayClipAtPoint(jumpSFX, transform.position);
             rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
         }
@@ -84,6 +89,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         isGrounded = true;
+        AudioSource.PlayClipAtPoint(landSFX, transform.position);
     }
 
    

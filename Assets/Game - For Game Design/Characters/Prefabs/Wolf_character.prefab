@@ -5924,6 +5924,9 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 10
   jumpWaitTime: 0.7
+  jumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
+  landSFX: {fileID: 8300000, guid: f43826fbd41ca754ebae68122855453d, type: 3}
+  isGrounded: 1
 --- !u!82 &5183561549588235320
 AudioSource:
   m_ObjectHideFlags: 0
