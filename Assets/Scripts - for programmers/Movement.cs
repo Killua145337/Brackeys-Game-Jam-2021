@@ -8,8 +8,10 @@ public class Movement : MonoBehaviour
     [SerializeField]  float moveSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
+    [SerializeField] float dashOnCooldownTime;
 
     [SerializeField] bool dashAbility;
+    [SerializeField] GameObject energyParticles;
 
     //Sounds
     [SerializeField] AudioClip jumpSFX;
@@ -104,6 +106,8 @@ public class Movement : MonoBehaviour
         //Start dash
         moveSpeed *= 3;
         transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = 0.5f;
+        GameObject dashParticles = Instantiate(energyParticles, transform.position, Quaternion.identity);
+
 
         //Continue after 1 second
         yield return new WaitForSeconds(1);
@@ -111,9 +115,10 @@ public class Movement : MonoBehaviour
         //Stop dash
         moveSpeed /= 3;
         transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = cameraTurnSpeedTemp;
+        Destroy(dashParticles);
 
         //Continue after a further 3 seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(dashOnCooldownTime);
 
         dashOnCooldown = false;
     }
