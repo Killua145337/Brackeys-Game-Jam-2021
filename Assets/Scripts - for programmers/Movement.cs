@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    bool isJumping = false;
+    public bool isGrounded = true;
 
     //Cached References
     Rigidbody rigidBody;
@@ -69,23 +69,21 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
-            isJumping = true;
-            StartCoroutine(JumpWait());
+            isGrounded = false;
         }
 
-        if (isJumping)
+        if(isGrounded == false)
         {
             animater.SetFloat("Speed", 0f);
         }
+
     }
 
-    private IEnumerator JumpWait()
-    {
-        yield return new WaitForSeconds(jumpWaitTime);
-        isJumping = false;
+    private void OnCollisionEnter(Collision other) {
+        isGrounded = true;
     }
 
    
