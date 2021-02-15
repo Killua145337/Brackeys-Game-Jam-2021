@@ -1125,5 +1125,10 @@ PrefabInstance:
       propertyPath: dashOnCooldownTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5102172851740385083, guid: 5120e31a136d53743842aeee06b09f76,
+        type: 3}
+      propertyPath: dashSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 95cb5f10cd07afe4bb24fd9f172adc19, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5120e31a136d53743842aeee06b09f76, type: 3}

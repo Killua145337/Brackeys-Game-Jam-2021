@@ -12,15 +12,19 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
 
+    //Jump Sounds
+    [SerializeField] AudioClip jumpSFX;
+    [SerializeField] AudioClip landSFX;
+
 
     //Dash
     [SerializeField] float dashOnCooldownTime;
     [SerializeField] bool dashAbility;
     [SerializeField] GameObject energyParticles;
 
-    //Sounds
-    [SerializeField] AudioClip jumpSFX;
-    [SerializeField] AudioClip landSFX;
+    //Dash Sound
+    [SerializeField] AudioClip dashSFX;
+
 
     //Vector3 Variables
     Vector2 input;
@@ -119,6 +123,7 @@ public class Movement : MonoBehaviour
         moveSpeed *= 3;
         transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = 0.5f;
         GameObject dashParticles = Instantiate(energyParticles, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(dashSFX, transform.position);
 
 
         //Continue after 1 second
