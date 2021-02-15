@@ -5863,6 +5863,7 @@ GameObject:
   - component: {fileID: 5099624834277629402}
   - component: {fileID: 5160991012739705620}
   - component: {fileID: 5102172851740385083}
+  - component: {fileID: 4585152352237224888}
   - component: {fileID: 5183561549588235320}
   - component: {fileID: 5102172851740385080}
   - component: {fileID: 5102172851740385081}
@@ -5926,6 +5927,20 @@ MonoBehaviour:
   jumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
   landSFX: {fileID: 8300000, guid: f43826fbd41ca754ebae68122855453d, type: 3}
   isGrounded: 1
+--- !u!114 &4585152352237224888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102172851740385082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40234b4b3534e7c44be3fda69ea669fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  howlSound: {fileID: 8300000, guid: e4aa6f48a36014dcc9d111bf13e6c85f, type: 3}
+  howlTime: 1.867
 --- !u!82 &5183561549588235320
 AudioSource:
   m_ObjectHideFlags: 0
