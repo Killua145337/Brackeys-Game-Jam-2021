@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
 
     //Cached References
     Rigidbody rigidBody;
-    Animator animater;
+    Animator animator;
     Camera mainCamera;
     Ray lookRay;
     
@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
-        animater = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
             transform.LookAt(dir);
         }
 
-        animater.SetFloat("Speed", rigidBody.velocity.magnitude);
+        animator.SetFloat("Speed", rigidBody.velocity.magnitude);
 
         Jump();
 
@@ -77,19 +77,15 @@ public class Movement : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(jumpSFX, transform.position);
             rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+            animator.SetBool("jump", true);
             isGrounded = false;
         }
-
-        if(isGrounded == false)
-        {
-            animater.SetFloat("Speed", 0f);
-        }
-
     }
 
     private void OnCollisionEnter(Collision other) {
         isGrounded = true;
         AudioSource.PlayClipAtPoint(landSFX, transform.position);
+        animator.SetBool("jump", false);
     }
 
    
