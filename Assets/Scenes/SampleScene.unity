@@ -374,6 +374,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf_character
       objectReference: {fileID: 0}
+    - target: {fileID: 5102172851740385083, guid: 5120e31a136d53743842aeee06b09f76,
+        type: 3}
+      propertyPath: dashAbility
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5120e31a136d53743842aeee06b09f76, type: 3}
 --- !u!1 &1334211004
