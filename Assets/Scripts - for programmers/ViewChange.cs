@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ViewChange : MonoBehaviour
 {
+
+    //Char1 is black
+    //char2 is white
+    [SerializeField] Material nightSky;
+    [SerializeField] Material daySky;
+
     public GameObject char1, char2;
 
     void Start()
@@ -25,11 +31,13 @@ public class ViewChange : MonoBehaviour
         {
             char1.SetActive(false);
             char2.SetActive(true);
+            RenderSettings.skybox = daySky;
         }
         else if (char2.activeInHierarchy == true)
         {
             char2.SetActive(false);
             char1.SetActive(true);
+            RenderSettings.skybox = nightSky;
         }
     }
 }

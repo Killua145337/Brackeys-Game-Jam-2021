@@ -5866,7 +5866,6 @@ GameObject:
   - component: {fileID: 5183561549588235320}
   - component: {fileID: 5102172851740385080}
   - component: {fileID: 5102172851740385081}
-  - component: {fileID: 1729650871}
   m_Layer: 0
   m_Name: Wolf_character
   m_TagString: Untagged
@@ -6052,20 +6051,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3548706, y: 1.0748825, z: 1.1900864}
   m_Center: {x: 0.00016061962, y: 0.5443373, z: 0.10656315}
---- !u!114 &1729650871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102172851740385082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8b895529c7a9148a508dd37a325338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  char1: {fileID: 0}
-  char2: {fileID: 0}
 --- !u!1 &5102174292141865066
 GameObject:
   m_ObjectHideFlags: 0
