@@ -6,10 +6,15 @@ public class Movement : MonoBehaviour
 {
     //Serialized Variables
     [SerializeField]  float moveSpeed;
+
+
+    //Jump
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
-    [SerializeField] float dashOnCooldownTime;
 
+
+    //Dash
+    [SerializeField] float dashOnCooldownTime;
     [SerializeField] bool dashAbility;
     [SerializeField] GameObject energyParticles;
 
@@ -22,7 +27,7 @@ public class Movement : MonoBehaviour
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    public bool isGrounded = true;
+    private bool isGrounded = true;
     private bool dashOnCooldown;
 
     //Cached References
@@ -41,6 +46,19 @@ public class Movement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+
+        Jump();
+
+        //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
+        if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown & isGrounded == false)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private void Move()
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
@@ -62,15 +80,9 @@ public class Movement : MonoBehaviour
             transform.LookAt(dir);
         }
 
+
+        //Blend Tree animation for moving
         animator.SetFloat("Speed", rigidBody.velocity.magnitude);
-
-        Jump();
-
-        //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
-        if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown)
-        {
-            StartCoroutine(Dash());
-        }
     }
 
     private void FixedUpdate()
