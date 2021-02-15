@@ -6,19 +6,33 @@ public class Movement : MonoBehaviour
 {
     //Serialized Variables
     [SerializeField]  float moveSpeed;
+
+
+    //Jump
     [SerializeField] float jumpForce;
     [SerializeField] float jumpWaitTime;
 
-    //Sounds
+    //Jump Sounds
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] AudioClip landSFX;
+
+
+    //Dash
+    [SerializeField] float dashOnCooldownTime;
+    [SerializeField] bool dashAbility;
+    [SerializeField] GameObject energyParticles;
+
+    //Dash Sound
+    [SerializeField] AudioClip dashSFX;
+
 
     //Vector3 Variables
     Vector2 input;
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    public bool isGrounded = true;
+    private bool isGrounded = true;
+    private bool dashOnCooldown;
 
     //Cached References
     Rigidbody rigidBody;
@@ -32,11 +46,23 @@ public class Movement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+
+        Jump();
+
+        //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
+        if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown & isGrounded == false)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private void Move()
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
@@ -58,10 +84,9 @@ public class Movement : MonoBehaviour
             transform.LookAt(dir);
         }
 
+
+        //Blend Tree animation for moving
         animator.SetFloat("Speed", rigidBody.velocity.magnitude);
-
-        Jump();
-
     }
 
     private void FixedUpdate()
@@ -88,5 +113,30 @@ public class Movement : MonoBehaviour
         animator.SetBool("jump", false);
     }
 
-   
+   IEnumerator Dash()
+    {
+        dashOnCooldown = true;
+
+        float cameraTurnSpeedTemp = transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed;
+
+        //Start dash
+        moveSpeed *= 3;
+        transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = 0.5f;
+        GameObject dashParticles = Instantiate(energyParticles, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(dashSFX, transform.position);
+
+
+        //Continue after 1 second
+        yield return new WaitForSeconds(1);
+
+        //Stop dash
+        moveSpeed /= 3;
+        transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = cameraTurnSpeedTemp;
+        Destroy(dashParticles);
+
+        //Continue after a further 3 seconds
+        yield return new WaitForSeconds(dashOnCooldownTime);
+
+        dashOnCooldown = false;
+    }
 }

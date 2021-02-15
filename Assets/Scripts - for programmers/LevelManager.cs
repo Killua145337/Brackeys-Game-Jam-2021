@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(instance.gameObject);
         }
         else
         {
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
 
     #region parameters
     [SerializeField] LoadingPanel loadingpanel;
+    [SerializeField] GameObject titlepanel;
+    [SerializeField] GameObject pausepanel;
     private string _curentLevelName;
     #endregion
 
@@ -40,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnLoadOperationComplete(AsyncOperation obj)
     {
-        Debug.Log("Loding " + _curentLevelName + "completed");
+        Debug.Log("Loading " + _curentLevelName + "completed");
         loadingpanel.DoOutAnimation();
     }
     #endregion
@@ -48,6 +51,8 @@ public class LevelManager : MonoBehaviour
     #region button functions
     public void StartGame(string levelname)
     {
+        titlepanel.SetActive(false);
+
         loadingpanel.DoInAnimation(levelname);
     }
     public void ReStart()
@@ -56,6 +61,8 @@ public class LevelManager : MonoBehaviour
     }
     public void GOHome()
     {
+        titlepanel.SetActive(true);
+
         loadingpanel.DoInAnimation("Boot");
     }
 
@@ -64,4 +71,26 @@ public class LevelManager : MonoBehaviour
         loadingpanel.DoInAnimation(sceneName);
     }
     #endregion
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            TogglePause();
+        }
+    }
+
+    public void TogglePause()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pausepanel.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pausepanel.SetActive(false);
+        }
+    }
 }
