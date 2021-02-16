@@ -5922,10 +5922,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 10
+  jumpHeight: 10
+  doubleJumpHeight: 15
   jumpWaitTime: 0.7
+  jumpCooldownTime: 0.2
   jumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
+  doubleJumpSFX: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   landSFX: {fileID: 8300000, guid: f43826fbd41ca754ebae68122855453d, type: 3}
+  dashOnCooldownTime: 0.2
+  dashAbility: 1
+  canDoubleJump: 0
+  energyParticles: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
+    type: 3}
+  dashSFX: {fileID: 8300000, guid: 95cb5f10cd07afe4bb24fd9f172adc19, type: 3}
   isGrounded: 1
 --- !u!114 &4585152352237224888
 MonoBehaviour:

@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
 
     //Jump Sounds
     [SerializeField] AudioClip jumpSFX;
+    [SerializeField] AudioClip doubleJumpSFX;
     [SerializeField] AudioClip landSFX;
 
 
@@ -72,6 +73,7 @@ public class Movement : MonoBehaviour
     {
         if (canDoubleJump && jumpCount == 1 && Input.GetButtonDown("Jump") && jumpCooldown == false)
         {
+            AudioSource.PlayClipAtPoint(doubleJumpSFX, transform.position);
             rigidBody.AddForce(new Vector3(0f, doubleJumpHeight, 0f), ForceMode.Impulse);
             jumpCount = 2;
         }
