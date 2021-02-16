@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject titlepanel;
     [SerializeField] GameObject pausepanel;
     private string _curentLevelName;
+
+    GameState currentGameState = GameState.PREGAME;
     #endregion
 
     #region SceneLoading
@@ -54,16 +56,24 @@ public class LevelManager : MonoBehaviour
         titlepanel.SetActive(false);
 
         loadingpanel.DoInAnimation(levelname);
+
+        UpdateState(GameState.RUNNING);
     }
-    public void ReStart()
+
+    public void Restart()
     {
         loadingpanel.DoInAnimation(SceneManager.GetActiveScene().name);
+
+        UpdateState(GameState.RUNNING);
     }
-    public void GOHome()
+
+    public void GoHome()
     {
         titlepanel.SetActive(true);
 
         loadingpanel.DoInAnimation("Boot");
+
+        UpdateState(GameState.PREGAME);
     }
 
     public void StartSceneLoading(string sceneName)
@@ -74,23 +84,57 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        if (currentGameState == GameState.PREGAME)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             TogglePause();
         }
     }
 
-    public void TogglePause()
+    private void UpdateState(GameState state)
     {
-        if (Time.timeScale == 1)
+        GameState previousGameState = currentGameState;
+        currentGameState = state;
+
+        switch (currentGameState)
         {
-            Time.timeScale = 0;
-            pausepanel.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 1;
-            pausepanel.SetActive(false);
+            case GameState.PREGAME:
+                Time.timeScale = 1.0f;
+                pausepanel.SetActive(false);
+                break;
+
+            case GameState.RUNNING:
+                Time.timeScale = 1.0f;
+                pausepanel.SetActive(false);
+                break;
+
+            case GameState.PAUSED:
+                Time.timeScale = 0.0f;
+                pausepanel.SetActive(true);
+                break;
+
+            default:
+                break;
         }
     }
+
+        public void TogglePause()
+    {
+        if (currentGameState == GameState.RUNNING)
+        {
+            UpdateState(GameState.PAUSED);
+        }
+        else if (currentGameState == GameState.PAUSED)
+        {
+            UpdateState(GameState.RUNNING);
+        }
+    }
+
+    public enum GameState
+    {
+        PREGAME, RUNNING, PAUSED, POSTGAME
+    }
+
 }

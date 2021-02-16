@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Levels - for Level Designers/Wolf Controller.unity
+    guid: 188b8c239d57d824dac89b8269151c42
+  m_configObjects: {}
