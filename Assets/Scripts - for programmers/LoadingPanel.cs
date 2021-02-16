@@ -10,20 +10,15 @@ public class LoadingPanel : MonoBehaviour
     [SerializeField] Image[] images;
     [SerializeField] TMPro.TMP_Text[] texts;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Invoke("DoOutAnimation", 1f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Invoke("DoOutAnimation", 1f);
     }
 
     public void DoInAnimation(string LevelName)
     {
+        gameObject.SetActive(true);
+
         this.LevelName = LevelName;
         foreach (var item in images)
         {
@@ -58,6 +53,6 @@ public class LoadingPanel : MonoBehaviour
 
     public void OnOutAnimationEnd()
     {
-
+        gameObject.SetActive(false);
     }
 }
