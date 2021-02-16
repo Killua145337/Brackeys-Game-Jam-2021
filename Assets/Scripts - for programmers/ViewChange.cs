@@ -40,12 +40,14 @@ public class ViewChange : MonoBehaviour
         if (char1.activeInHierarchy == true)
         {
             char1.SetActive(false);
+            char1.GetComponentInChildren<BoxCollider>().enabled = true;
             char2.SetActive(true);
             RenderSettings.skybox = daySky;
         }
         else if (char2.activeInHierarchy == true)
         {
             char2.SetActive(false);
+            char2.GetComponentInChildren<BoxCollider>().enabled = true;
             char1.SetActive(true);
             RenderSettings.skybox = nightSky;
         }
