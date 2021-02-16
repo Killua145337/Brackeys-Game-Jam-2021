@@ -14,16 +14,19 @@ public class ViewChange : MonoBehaviour
     [SerializeField] GameObject blackWolf;
     [SerializeField] GameObject whiteWolf;
 
+    Movement movement1, movement2;
+
     public GameObject char1, char2;
 
     void Start()
     {
-        
+        movement1 = blackWolf.GetComponent<Movement>();
+        movement2 = whiteWolf.GetComponent<Movement>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && movement1.isGrounded && movement2.isGrounded)
         {
             SwitchChar();
         }
