@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     private bool dashOnCooldown;
 
     //Cached References
