@@ -9,6 +9,10 @@ public class ViewChange : MonoBehaviour
     //char2 is white
     [SerializeField] Material nightSky;
     [SerializeField] Material daySky;
+    [SerializeField] GameObject blackParticles;
+    [SerializeField] GameObject whiteParticles;
+    [SerializeField] GameObject blackWolf;
+    [SerializeField] GameObject whiteWolf;
 
     public GameObject char1, char2;
 
@@ -23,6 +27,9 @@ public class ViewChange : MonoBehaviour
         {
             SwitchChar();
         }
+
+        blackParticles.transform.position = blackWolf.transform.position;
+        whiteParticles.transform.position = whiteWolf.transform.position;
     }
 
     void SwitchChar()
