@@ -6,6 +6,7 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject door;
     [SerializeField] float doorPositionChange;
+    [SerializeField] float doorSpeed;
 
     private Vector3 startingPos;
 
@@ -13,8 +14,8 @@ public class DoorTrigger : MonoBehaviour
     private void Start() {
         startingPos = door.transform.position;
     }
-    private void OnTriggerStay(Collider other) {
-        door.transform.position += new Vector3(0f, doorPositionChange, 0f) * Time.deltaTime;
+    private void OnTriggerEnter(Collider other) {
+        door.transform.position += new Vector3(0f, doorPositionChange, 0f) * Time.deltaTime * doorSpeed;
         GetComponent<Animator>().SetBool("triggered", true);
     }
 
