@@ -9,17 +9,33 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField] float doorSpeed;
 
     private Vector3 startingPos;
-
+    private bool triggered;
 
     private void Start() {
-        startingPos = door.transform.position;
+        startingPos = new Vector3(door.transform.position.x, door.transform.position.y, door.transform.position.z);
+        triggered = false;
     }
+
+    private void Update()
+    {
+        if (triggered && door.transform.position.y < startingPos.y + doorPositionChange)
+        {
+            door.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
-        door.transform.position += new Vector3(0f, doorPositionChange, 0f) * Time.deltaTime * doorSpeed;
+        triggered = true;
+        //door.transform.position += new Vector3(0f, doorPositionChange, 0f) * Time.deltaTime * doorSpeed;
         GetComponent<Animator>().SetBool("triggered", true);
     }
 
     private void OnTriggerExit(Collider other) {
+        // If the collider was deactivated do nothing
+        if (!other.gameObject.activeInHierarchy)
+            return;
+
+        triggered = false;
         door.transform.position = startingPos;
         GetComponent<Animator>().SetBool("triggered", false);
     }
