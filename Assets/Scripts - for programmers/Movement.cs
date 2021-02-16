@@ -5,12 +5,14 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     //Serialized Variables
-    [SerializeField]  float moveSpeed;
+    [SerializeField] float moveSpeed;
 
 
     //Jump
-    [SerializeField] float jumpForce;
+    [SerializeField] float jumpHeight;
+    [SerializeField] float doubleJumpHeight;
     [SerializeField] float jumpWaitTime;
+    [SerializeField] float jumpCooldownTime;
 
     //Jump Sounds
     [SerializeField] AudioClip jumpSFX;
@@ -20,10 +22,16 @@ public class Movement : MonoBehaviour
     //Dash
     [SerializeField] float dashOnCooldownTime;
     [SerializeField] bool dashAbility;
+    [SerializeField] bool canDoubleJump;
     [SerializeField] GameObject energyParticles;
 
     //Dash Sound
     [SerializeField] AudioClip dashSFX;
+
+    public bool isGrounded = true;
+    private bool dashOnCooldown;
+    private bool jumpCooldown;
+    private int jumpCount = 0;
 
 
     //Vector3 Variables
@@ -31,15 +39,14 @@ public class Movement : MonoBehaviour
     Vector3 moveVelocity;
     Vector3 moveInput;
 
-    private bool isGrounded = true;
-    private bool dashOnCooldown;
+
 
     //Cached References
     Rigidbody rigidBody;
     Animator animator;
     Camera mainCamera;
     Ray lookRay;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,9 +60,25 @@ public class Movement : MonoBehaviour
     {
         Move();
 
-        Jump();
+        StartCoroutine(Jump());
 
         //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
+        DashCheck();
+
+        DoubleJump();
+    }
+
+    private void DoubleJump()
+    {
+        if (canDoubleJump && jumpCount == 1 && Input.GetButtonDown("Jump") && jumpCooldown == false)
+        {
+            rigidBody.AddForce(new Vector3(0f, doubleJumpHeight, 0f), ForceMode.Impulse);
+            jumpCount = 2;
+        }
+    }
+
+    private void DashCheck()
+    {
         if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown & isGrounded == false)
         {
             StartCoroutine(Dash());
@@ -96,28 +119,34 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void Jump()
+    IEnumerator Jump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             AudioSource.PlayClipAtPoint(jumpSFX, transform.position);
-            rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+            rigidBody.AddForce(new Vector3(0f, jumpHeight, 0f), ForceMode.Impulse);
             animator.SetBool("jump", true);
             isGrounded = false;
+            jumpCount = 1;
+            jumpCooldown = true;
+            yield return new WaitForSeconds(jumpCooldownTime);
+            jumpCooldown = false;
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter(Collision other)
+    {
         isGrounded = true;
-        if(animator.GetBool("jump") == true)
+        jumpCount = 0;
+        if (animator.GetBool("jump") == true)
         {
             animator.SetBool("jump", false);
             AudioSource.PlayClipAtPoint(landSFX, transform.position);
         }
-        
+
     }
 
-   IEnumerator Dash()
+    IEnumerator Dash()
     {
         dashOnCooldown = true;
 
