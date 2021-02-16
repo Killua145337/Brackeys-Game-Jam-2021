@@ -27,7 +27,7 @@ public class ViewChange : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) )
+        if (Input.GetKeyDown(KeyCode.R) && movement1.isGrounded && movement2.isGrounded )
         {
             SwitchChar();
         }
@@ -38,13 +38,13 @@ public class ViewChange : MonoBehaviour
 
     void SwitchChar()
     {
-        if (char1.activeInHierarchy == true && movement1.isGrounded)
+        if (char1.activeInHierarchy == true)
         {
             char1.SetActive(false);
             char2.SetActive(true);
             RenderSettings.skybox = daySky;
         }
-        else if (char2.activeInHierarchy == true && movement2.isGrounded)
+        else if (char2.activeInHierarchy == true)
         {
             char2.SetActive(false);
             char1.SetActive(true);
