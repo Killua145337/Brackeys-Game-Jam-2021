@@ -109,8 +109,12 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         isGrounded = true;
-        AudioSource.PlayClipAtPoint(landSFX, transform.position);
-        animator.SetBool("jump", false);
+        if(animator.GetBool("jump") == true)
+        {
+            animator.SetBool("jump", false);
+            AudioSource.PlayClipAtPoint(landSFX, transform.position);
+        }
+        
     }
 
    IEnumerator Dash()
