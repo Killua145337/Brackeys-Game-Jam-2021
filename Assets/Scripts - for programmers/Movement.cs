@@ -33,7 +33,9 @@ public class Movement : MonoBehaviour
     public bool dashing;
     private bool dashOnCooldown;
     private bool jumpCooldown;
+    private bool moving;
     private int jumpCount = 0;
+    private float startingMoveSpeed;
 
 
     //Vector3 Variables
@@ -55,6 +57,7 @@ public class Movement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
+        startingMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -62,12 +65,29 @@ public class Movement : MonoBehaviour
     {
         Move();
 
+        Run();
+
         StartCoroutine(Jump());
 
         //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
         DashCheck();
 
         DoubleJump();
+    }
+
+    private void Run()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && moving == true)
+        {
+            if(moveSpeed < startingMoveSpeed * 2)
+            {
+            moveSpeed *= 2;
+            }
+        }
+        else if(dashing == false)
+        {
+            moveSpeed = startingMoveSpeed;
+        }
     }
 
     private void DoubleJump()
@@ -109,6 +129,11 @@ public class Movement : MonoBehaviour
             Vector3 dir = lookRay.GetPoint(1);
             dir.y = transform.position.y;
             transform.LookAt(dir);
+            moving = true;
+        }
+        else
+        {
+            moving = false;
         }
 
 
