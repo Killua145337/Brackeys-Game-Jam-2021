@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour
     [SerializeField] AudioClip dashSFX;
 
     public bool isGrounded = true;
+    public bool dashing;
     private bool dashOnCooldown;
     private bool jumpCooldown;
     private int jumpCount = 0;
@@ -159,6 +160,7 @@ public class Movement : MonoBehaviour
         moveSpeed *= 3;
         transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = 0.5f;
         GameObject dashParticles = Instantiate(energyParticles, transform.position, Quaternion.identity);
+        dashing = true;
         AudioSource.PlayClipAtPoint(dashSFX, transform.position);
 
 
@@ -168,6 +170,7 @@ public class Movement : MonoBehaviour
         //Stop dash
         moveSpeed /= 3;
         transform.parent.GetComponentInChildren<UnityStandardAssets.Cameras.FreeLookCam>().m_TurnSpeed = cameraTurnSpeedTemp;
+        dashing = false;
         Destroy(dashParticles);
 
         //Continue after a further 3 seconds
