@@ -75,6 +75,7 @@ public class Movement : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(doubleJumpSFX, transform.position);
             rigidBody.AddForce(new Vector3(0f, doubleJumpHeight, 0f), ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.forward * doubleJumpHeight/3, ForceMode.Impulse);
             jumpCount = 2;
         }
     }
