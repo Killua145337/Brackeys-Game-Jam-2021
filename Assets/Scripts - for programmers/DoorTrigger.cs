@@ -21,6 +21,14 @@ public class DoorTrigger : MonoBehaviour
         if (triggered && door.transform.position.y < startingPos.y + doorPositionChange)
         {
             door.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
+
+            if (door.GetComponent<MovablePlatform>().onPlatform.Count != 0)
+            {
+                foreach (GameObject wolf in door.GetComponent<MovablePlatform>().onPlatform)
+                {
+                    wolf.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
+                }
+            }
         }
     }
 
