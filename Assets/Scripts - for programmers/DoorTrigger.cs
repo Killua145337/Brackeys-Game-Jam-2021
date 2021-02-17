@@ -17,7 +17,7 @@ public class DoorTrigger : MonoBehaviour
     }
 
     private void Update()
-    {
+    {   if(doorSpeed>0f){
         if (triggered && door.transform.position.y < startingPos.y + doorPositionChange)
         {
             door.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
@@ -30,6 +30,20 @@ public class DoorTrigger : MonoBehaviour
                 }
             }
         }
+       }
+else {if (triggered && door.transform.position.y > startingPos.y - doorPositionChange)
+        {
+            door.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
+
+            if (door.GetComponent<MovablePlatform>().onPlatform.Count != 0)
+            {
+                foreach (GameObject wolf in door.GetComponent<MovablePlatform>().onPlatform)
+                {
+                    wolf.transform.Translate(Vector3.up * Time.deltaTime * doorSpeed);
+                }
+            }
+        }
+     }
     }
 
     private void OnTriggerEnter(Collider other) {
