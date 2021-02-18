@@ -303,6 +303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6114876683314239206, guid: 41c85a2f6895b964c9db538548fa085a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: LevelFinal
+      objectReference: {fileID: 0}
     - target: {fileID: 6114876684960245624, guid: 41c85a2f6895b964c9db538548fa085a,
         type: 3}
       propertyPath: m_RootOrder
