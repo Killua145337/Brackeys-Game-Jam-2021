@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8662d2116e13b98418bcd4c9cffa261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: dd7561ed30c073c43ab30eb6d5956bdb, type: 3}
+  pickupSound: {fileID: 8300000, guid: 739b813bd07965c4f8e32cac27fb6ff2, type: 3}
   gameManager: {fileID: 0}
 --- !u!65 &88788600768851326
 BoxCollider:
