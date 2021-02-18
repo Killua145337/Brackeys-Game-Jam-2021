@@ -51,10 +51,15 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region button functions
-    public void StartGame(string levelname)
+    public void StartIntro()
     {
         titlepanel.SetActive(false);
 
+        LoadLevel("Intro");
+    }
+
+    public void StartGame(string levelname)
+    {
         loadingpanel.DoInAnimation(levelname);
 
         UpdateState(GameState.RUNNING);
