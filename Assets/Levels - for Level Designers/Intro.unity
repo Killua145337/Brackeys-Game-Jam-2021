@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicWait: 4.963
+  musicVolume: 0.5
   nextLevelWait: 16.326
   introMusic: {fileID: 8300000, guid: 041174239f752dc4a915820c6931e6fe, type: 3}
 --- !u!1 &1205235686

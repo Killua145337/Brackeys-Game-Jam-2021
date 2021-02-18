@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Intro : MonoBehaviour
 {
     [SerializeField] float musicWait;
+    [SerializeField] float musicVolume;
     [SerializeField] float nextLevelWait;
     [SerializeField] AudioClip introMusic;
 
@@ -16,7 +17,7 @@ public class Intro : MonoBehaviour
     IEnumerator MusicWait()
     {
         yield return new WaitForSeconds(musicWait);
-        AudioSource.PlayClipAtPoint(introMusic, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(introMusic, Camera.main.transform.position, musicVolume);
     }
     IEnumerator NextLevelWait()
     {
