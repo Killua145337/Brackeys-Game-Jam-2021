@@ -17,7 +17,7 @@ public class PickupCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        starText.text = "Stars Collected: " + starsCollected.ToString();
+        starText.text = "Stars Collected: " + starsCollected.ToString() + "/40";
 
         if(starsCollected >= 40)
         {
