@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
 
         StartCoroutine(Jump());
 
-        //Check if dash ability is enabled, 'T' key is pressed, and dash is not on cooldown
+        //Check if dash ability is enabled, 'E' key is pressed, and dash is not on cooldown
         DashCheck();
 
         DoubleJump();
@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour
 
     private void DashCheck()
     {
-        if (dashAbility && Input.GetKeyDown(KeyCode.T) && !dashOnCooldown & isGrounded == false)
+        if (dashAbility && Input.GetKeyDown(KeyCode.E) && !dashOnCooldown & isGrounded == false)
         {
             StartCoroutine(Dash());
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject door;
+    [SerializeField] AudioClip doorOpenSFX;
     [SerializeField] float doorPositionChange;
     [SerializeField] float doorSpeed;
 
@@ -48,6 +49,7 @@ else {if (triggered && door.transform.position.y > startingPos.y - doorPositionC
 
     private void OnTriggerEnter(Collider other) {
         triggered = true;
+        AudioSource.PlayClipAtPoint(doorOpenSFX, transform.position);
         //door.transform.position += new Vector3(0f, doorPositionChange, 0f) * Time.deltaTime * doorSpeed;
         GetComponent<Animator>().SetBool("triggered", true);
     }

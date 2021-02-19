@@ -22,6 +22,6 @@ public class Intro : MonoBehaviour
     IEnumerator NextLevelWait()
     {
         yield return new WaitForSeconds(nextLevelWait);
-        FindObjectOfType<LevelManager>().StartGame("LevelFinal");
+        SceneManager.LoadScene("LevelFinal");
     }
 }

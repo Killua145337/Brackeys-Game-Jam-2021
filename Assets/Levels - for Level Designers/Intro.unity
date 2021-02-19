@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a54120440b1a34bb175b23e84dd4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicWait: 4.963
+  musicWait: 4.85
   musicVolume: 0.5
   nextLevelWait: 16.326
   introMusic: {fileID: 8300000, guid: 041174239f752dc4a915820c6931e6fe, type: 3}

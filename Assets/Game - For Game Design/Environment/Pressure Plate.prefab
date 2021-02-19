@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937405407081019990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.252, y: 0.3120618, z: -0.438}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.231, y: 0.3120618, z: -0.438}
+  m_LocalScale: {x: 0.93, y: 0.93, z: 0.93}
   m_Children: []
   m_Father: {fileID: 5937405407889397525}
   m_RootOrder: 0
@@ -173,7 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  doorOpenSFX: {fileID: 8300000, guid: 074a05a7ddb7b2346a66d78466188a84, type: 3}
   doorPositionChange: 4
+  doorSpeed: 5
 --- !u!1 &5937405408330949246
 GameObject:
   m_ObjectHideFlags: 0
