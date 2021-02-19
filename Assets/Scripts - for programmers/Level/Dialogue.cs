@@ -14,6 +14,7 @@ public class Dialogue : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             audioSource.Play();
+            GetComponent<Collider>().enabled = false;
             StartCoroutine(Wait());
         }
     }
