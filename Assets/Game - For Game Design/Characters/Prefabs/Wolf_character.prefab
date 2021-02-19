@@ -5936,6 +5936,7 @@ MonoBehaviour:
     type: 3}
   dashSFX: {fileID: 8300000, guid: 95cb5f10cd07afe4bb24fd9f172adc19, type: 3}
   isGrounded: 1
+  dashing: 0
 --- !u!114 &4585152352237224888
 MonoBehaviour:
   m_ObjectHideFlags: 0
