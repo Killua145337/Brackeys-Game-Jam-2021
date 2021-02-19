@@ -18,7 +18,6 @@ public class Control : MonoBehaviour
     void Update()
     {
         Howl();
-
     }
 
     private void Howl()
@@ -26,9 +25,14 @@ public class Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             animator.SetBool("howl", true);
-            AudioSource.PlayClipAtPoint(howlSound, transform.position);
+            //AudioSource.PlayClipAtPoint(howlSound, transform.position);
             StartCoroutine(StopHowlAnimation());
         }
+    }
+
+    private void HowlStart()
+    {
+        AudioSource.PlayClipAtPoint(howlSound, transform.position);
     }
 
     IEnumerator StopHowlAnimation()
