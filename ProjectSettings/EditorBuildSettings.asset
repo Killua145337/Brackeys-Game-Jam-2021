@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels - for Level Designers/LevelFinal.unity
     guid: f1feab59758fd444199b440817ad3995
+  - enabled: 1
+    path: Assets/Levels - for Level Designers/Cutscene.unity
+    guid: 2848568459656894a944c096b8599846
   m_configObjects: {}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PickupCount : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PickupCount : MonoBehaviour
     public int starsCollected = 0;
 
     private void Start() {
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,8 +21,9 @@ public class PickupCount : MonoBehaviour
 
         if(starsCollected >= 40)
         {
-            audioSource.Play();
-            
+            // audioSource.Play();
+            SceneManager.LoadScene("Cutscene");
+
         }
 
     }
