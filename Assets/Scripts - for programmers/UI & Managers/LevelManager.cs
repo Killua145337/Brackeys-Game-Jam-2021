@@ -75,9 +75,7 @@ public class LevelManager : MonoBehaviour
     public void GoHome()
     {
         titlepanel.SetActive(true);
-
         loadingpanel.DoInAnimation("Boot");
-
         UpdateState(GameState.PREGAME);
     }
 
