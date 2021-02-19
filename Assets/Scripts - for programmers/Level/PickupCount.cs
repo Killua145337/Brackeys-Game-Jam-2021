@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PickupCount : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI starText;
-    AudioSource audioSource;
+    [SerializeField] RawImage cameraFadeOutImage;
+    [SerializeField] int maxStars; //for tuning purposes
     public int starsCollected = 0;
 
     private void Start() {
-        // audioSource = GetComponent<AudioSource>();
+        cameraFadeOutImage.canvasRenderer.SetAlpha(0);
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        starText.text = "Stars Collected: " + starsCollected.ToString() + "/40";
-
-        if(starsCollected >= 40)
+        starText.text = "Stars Collected: " + starsCollected.ToString() + "/" + maxStars;
+        
+        if(starsCollected >= maxStars)
         {
-            // audioSource.Play();
-            SceneManager.LoadScene("Cutscene");
-
+            cameraFadeOutImage.CrossFadeAlpha(1, 4, false);
+            StartCoroutine(VoiceLength());
         }
 
+    }
+    IEnumerator VoiceLength()
+    {
+        yield return new WaitForSeconds(22);
+        SceneManager.LoadScene("Cutscene");
     }
 }
