@@ -8,7 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels - for Level Designers/LevelFinal.unity
     guid: f1feab59758fd444199b440817ad3995
-  - enabled: 1
-    path: Assets/Levels - for Level Designers/Intro.unity
-    guid: 945e1bede7bd5264f8e8ba919f48dade
   m_configObjects: {}
