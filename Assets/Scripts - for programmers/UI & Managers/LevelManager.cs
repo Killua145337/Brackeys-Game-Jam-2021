@@ -55,6 +55,10 @@ public class LevelManager : MonoBehaviour
 
         UpdateState(GameState.RUNNING);
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
     public void StartCutscene()
     {
