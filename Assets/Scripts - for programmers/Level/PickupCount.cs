@@ -31,6 +31,6 @@ public class PickupCount : MonoBehaviour
     IEnumerator VoiceLength()
     {
         yield return new WaitForSeconds(22);
-        LevelManager.instance.StartCutscene();
+        SceneManager.LoadScene("Cutscene");
     }
 }
