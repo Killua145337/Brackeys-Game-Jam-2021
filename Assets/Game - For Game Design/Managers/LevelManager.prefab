@@ -2081,7 +2081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6114876684334842291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2940,6 +2940,7 @@ MonoBehaviour:
   loadingpanel: {fileID: 6114876684334842252}
   titlepanel: {fileID: 6114876683180331937}
   pausepanel: {fileID: 6114876684511377957}
+  currentGameState: 0
 --- !u!1 &6114876685039760590
 GameObject:
   m_ObjectHideFlags: 0

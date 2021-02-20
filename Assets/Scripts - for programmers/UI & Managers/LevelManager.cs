@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject pausepanel;
     private string _curentLevelName;
 
-    GameState currentGameState = GameState.PREGAME;
+    public GameState currentGameState = GameState.PREGAME;
     #endregion
 
     #region SceneLoading
@@ -48,6 +48,20 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Loading " + _curentLevelName + "completed");
         loadingpanel.DoOutAnimation();
     }
+
+    public void StartGame()
+    {
+        LoadLevel("LevelFinal");
+
+        UpdateState(GameState.RUNNING);
+    }
+
+    public void StartCutscene()
+    {
+        loadingpanel.DoInAnimation("Cutscene");
+
+        UpdateState(GameState.POSTGAME);
+    }
     #endregion
 
     #region button functions
@@ -55,14 +69,7 @@ public class LevelManager : MonoBehaviour
     {
         titlepanel.SetActive(false);
 
-        LoadLevel("Intro");
-    }
-
-    public void StartGame(string levelname)
-    {
-        loadingpanel.DoInAnimation(levelname);
-
-        UpdateState(GameState.RUNNING);
+        loadingpanel.DoInAnimation("Intro");
     }
 
     public void Restart()
@@ -78,19 +85,14 @@ public class LevelManager : MonoBehaviour
         loadingpanel.DoInAnimation("Boot");
         UpdateState(GameState.PREGAME);
     }
-
-    public void StartSceneLoading(string sceneName)
-    {
-        loadingpanel.DoInAnimation(sceneName);
-    }
     #endregion
 
     private void Update()
     {
-        if (currentGameState == GameState.PREGAME)
+        if (currentGameState == GameState.PREGAME || currentGameState == GameState.POSTGAME)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
         }
@@ -116,6 +118,11 @@ public class LevelManager : MonoBehaviour
             case GameState.PAUSED:
                 Time.timeScale = 0.0f;
                 pausepanel.SetActive(true);
+                break;
+
+            case GameState.POSTGAME:
+                Time.timeScale = 1.0f;
+                pausepanel.SetActive(false);
                 break;
 
             default:

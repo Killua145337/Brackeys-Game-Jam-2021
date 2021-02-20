@@ -25,8 +25,6 @@ public class Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             animator.SetBool("howl", true);
-            HowlStart();
-            //AudioSource.PlayClipAtPoint(howlSound, transform.position);
             StartCoroutine(StopHowlAnimation());
         }
     }

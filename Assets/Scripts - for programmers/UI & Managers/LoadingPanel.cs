@@ -6,14 +6,25 @@ using UnityEngine.UI;
 
 public class LoadingPanel : MonoBehaviour
 {
+    #region Singleton
+    public static LoadingPanel instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     string LevelName;
     [SerializeField] Image[] images;
     [SerializeField] TMPro.TMP_Text[] texts;
-
-    void Start()
-    {
-        //Invoke("DoOutAnimation", 1f);
-    }
 
     public void DoInAnimation(string LevelName)
     {

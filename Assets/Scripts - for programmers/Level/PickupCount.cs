@@ -16,8 +16,6 @@ public class PickupCount : MonoBehaviour
         cameraFadeOutImage.canvasRenderer.SetAlpha(0);
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         starText.text = "Stars Collected: " + starsCollected.ToString() + "/" + maxStars;
@@ -29,9 +27,10 @@ public class PickupCount : MonoBehaviour
         }
 
     }
+
     IEnumerator VoiceLength()
     {
         yield return new WaitForSeconds(22);
-        SceneManager.LoadScene("Cutscene");
+        LevelManager.instance.StartCutscene();
     }
 }
