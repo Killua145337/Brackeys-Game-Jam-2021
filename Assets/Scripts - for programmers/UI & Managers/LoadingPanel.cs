@@ -60,6 +60,8 @@ public class LoadingPanel : MonoBehaviour
         {
             item.DOFade(0, 1);
         }
+
+        Invoke("OnOutAnimationEnd", 1.1f);
     }
 
     public void OnOutAnimationEnd()

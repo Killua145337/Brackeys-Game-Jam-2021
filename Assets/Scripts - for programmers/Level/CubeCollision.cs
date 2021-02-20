@@ -7,7 +7,7 @@ public class CubeCollision : MonoBehaviour
     private int timesHit = 0;
     private bool isPlaying = false;
     [SerializeField] AudioSource hitDialogue;
-    [SerializeField] AudioSource fuckOff;
+    [SerializeField] AudioSource goAway;
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Player")
@@ -27,7 +27,7 @@ public class CubeCollision : MonoBehaviour
             {
                 if (!isPlaying)
                 {
-                    fuckOff.Play();
+                    goAway.Play();
                     isPlaying = true;
                     StartCoroutine(Wait());
                 }
