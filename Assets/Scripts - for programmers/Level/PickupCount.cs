@@ -16,21 +16,21 @@ public class PickupCount : MonoBehaviour
         cameraFadeOutImage.canvasRenderer.SetAlpha(0);
     }
 
-    void Update()
+    public void IncreaseStarsCollected()
     {
+        starsCollected++;
         starText.text = "Stars Collected: " + starsCollected.ToString() + "/" + maxStars;
-        
-        if(starsCollected >= maxStars)
+
+        if (starsCollected >= maxStars)
         {
             cameraFadeOutImage.CrossFadeAlpha(1, 4, false);
             StartCoroutine(VoiceLength());
         }
-
     }
 
     IEnumerator VoiceLength()
     {
         yield return new WaitForSeconds(22);
-        SceneManager.LoadScene("Cutscene");
+        LevelManager.instance.StartCutscene();
     }
 }

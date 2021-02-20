@@ -18,9 +18,9 @@ public class Pickups : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player")
         {
-            pickupCount.starsCollected++;
+            pickupCount.IncreaseStarsCollected();
 
-            // //Sound
+            //Sound
             AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
             Destroy(gameObject);
