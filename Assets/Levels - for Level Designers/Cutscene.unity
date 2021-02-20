@@ -1559,34 +1559,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &4585152350436392305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102172853278335475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40234b4b3534e7c44be3fda69ea669fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  howlSound: {fileID: 8300000, guid: e4aa6f48a36014dcc9d111bf13e6c85f, type: 3}
-  howlTime: 1.867
---- !u!114 &4585152352461458774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102172851545706964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40234b4b3534e7c44be3fda69ea669fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  howlSound: {fileID: 8300000, guid: e4aa6f48a36014dcc9d111bf13e6c85f, type: 3}
-  howlTime: 1.867
 --- !u!1 &4770804463743678691
 GameObject:
   m_ObjectHideFlags: 0
@@ -12355,8 +12327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5099624834485605172}
-  - component: {fileID: 5102172851545706965}
-  - component: {fileID: 4585152352461458774}
   - component: {fileID: 5183561549934103254}
   - component: {fileID: 5102172851545706966}
   - component: {fileID: 5102172851545706967}
@@ -12368,34 +12338,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5102172851545706965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102172851545706964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a59fe0357fadfb49933b4ebeae06379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpHeight: 10
-  doubleJumpHeight: 20
-  jumpWaitTime: 0.7
-  jumpCooldownTime: 0.2
-  jumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
-  doubleJumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
-  landSFX: {fileID: 8300000, guid: f43826fbd41ca754ebae68122855453d, type: 3}
-  dashOnCooldownTime: 0
-  dashAbility: 0
-  canDoubleJump: 1
-  energyParticles: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
-    type: 3}
-  dashSFX: {fileID: 8300000, guid: 95cb5f10cd07afe4bb24fd9f172adc19, type: 3}
-  isGrounded: 1
-  dashing: 0
 --- !u!54 &5102172851545706966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12473,34 +12415,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
---- !u!114 &5102172853278335474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5102172853278335475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a59fe0357fadfb49933b4ebeae06379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpHeight: 10
-  doubleJumpHeight: 15
-  jumpWaitTime: 0.7
-  jumpCooldownTime: 0.2
-  jumpSFX: {fileID: 8300000, guid: 90dc417738374c44a8446b0ab43a5e23, type: 3}
-  doubleJumpSFX: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  landSFX: {fileID: 8300000, guid: f43826fbd41ca754ebae68122855453d, type: 3}
-  dashOnCooldownTime: 0.2
-  dashAbility: 1
-  canDoubleJump: 0
-  energyParticles: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
-    type: 3}
-  dashSFX: {fileID: 8300000, guid: 95cb5f10cd07afe4bb24fd9f172adc19, type: 3}
-  isGrounded: 1
-  dashing: 0
 --- !u!1 &5102172853278335475
 GameObject:
   m_ObjectHideFlags: 0
@@ -12510,8 +12424,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5099624835672941331}
-  - component: {fileID: 5102172853278335474}
-  - component: {fileID: 4585152350436392305}
   - component: {fileID: 5183561551398828785}
   - component: {fileID: 5102172853278335473}
   - component: {fileID: 5102172853278335472}
