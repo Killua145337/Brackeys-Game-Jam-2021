@@ -4355,7 +4355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitDialogue: {fileID: 592057517}
-  goAway: {fileID: 0}
+  goAway: {fileID: 592057515}
 --- !u!82 &592057515
 AudioSource:
   m_ObjectHideFlags: 0
