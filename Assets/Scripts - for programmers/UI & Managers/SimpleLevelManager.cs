@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SimpleLevelManager : MonoBehaviour
 {
-   [SerializeField] string levelName;
-
-    public void LoadLevel()
+    public void LoadMenu()
     {
-        SceneManager.LoadScene(levelName);
+        LevelManager.instance.GoHome();
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        LevelManager.instance.LoadLevel(levelName);
     }
 }
